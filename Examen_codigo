@@ -53,16 +53,29 @@ def analizar_codigo():
     tabla = tk.Frame(resultados_frame, bg='white')
     tabla.grid(row=0, column=0)
 
-    tk.Label(tabla, text="TOKEN", bg='white').grid(row=0, column=0, padx=5, pady=5)
-    tk.Label(tabla, text="LEXEMA", bg='white').grid(row=0, column=1, padx=5, pady=5)
+    tk.Label(tabla, text="LEXEMA", bg='white').grid(row=0, column=0, padx=5, pady=5)
+    tk.Label(tabla, text="PALABRA_R", bg='white').grid(row=0, column=1, padx=5, pady=5)
+    tk.Label(tabla, text="IDENTIFICADOR", bg='white').grid(row=0, column=2, padx=5, pady=5)
+    tk.Label(tabla, text="OPERADOR", bg='white').grid(row=0, column=3, padx=5, pady=5)
+    tk.Label(tabla, text="NUMERO", bg='white').grid(row=0, column=4, padx=5, pady=5)
+    tk.Label(tabla, text="SIMBOLO", bg='white').grid(row=0, column=5, padx=5, pady=5)
 
     # Ajustar el número de filas mostradas en la tabla
     num_filas_mostradas = min(len(resultados) + 1, 25)
 
     for i, resultado in enumerate(resultados, start=1):
         if i <= num_filas_mostradas:
-            tk.Label(tabla, text=resultado[0], bg='white').grid(row=i, column=0, padx=40, pady=5)
-            tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=1, padx=40, pady=5)
+            tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=0, padx=40, pady=5)
+            if resultado[0] == 'PALABRAS_R':
+                tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=1, padx=40, pady=5)
+            elif resultado[0] == 'IDENTIFICADOR':
+                tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=2, padx=40, pady=5)
+            elif resultado[0] == 'OPERADOR':
+                tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=3, padx=40, pady=5)
+            elif resultado[0] == 'NUMERO':
+                tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=4, padx=40, pady=5)
+            elif resultado[0] == 'SIMBOLO':
+                tk.Label(tabla, text=resultado[1], bg='white').grid(row=i, column=5, padx=40, pady=5)
 
 # Crear la interfaz gráfica
 ventana_principal = tk.Tk()
@@ -74,7 +87,7 @@ panel_codigo = tk.Frame(ventana_principal, bg='lightblue')  # Cambiar el color d
 panel_codigo.grid(row=0, column=0, padx=10, pady=10)
 
 codigo_text = tk.Text(panel_codigo, height=35, width=60, bg='white')  # Cambiar el color de fondo del área de texto
-codigo_text.insert(tk.END, "area = (base * altura) / 2\nJonatan Eduardo Aguilar Gomez 07 de julio del 2002")
+codigo_text.insert(tk.END, "area=(base*altura)/2\njonatan eduardo aguillar gomez 07 de julio del 2002")
 codigo_text.grid(row=2, column=2, padx=10, pady=10)
 
 # Botón de análisis léxico
